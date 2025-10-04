@@ -1,132 +1,166 @@
 /**
-* Template Name: Maundy
-* Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
-* Updated: Feb 01 2025 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+ * Hyphal Health Co. — Main JS (2025-10-04)
+ * Fixes: countdown parsing, header invert on scroll, mobile nav, preloader fallback,
+ *        scroll-top, AOS safe init, hero social links horizontal.
+ */
 
-(function() {
-  "use strict";
+(() => {
+  'use strict';
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
-  function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+  // -------- Elements
+  const body = document.body;
+  const header = document.querySelector('#header');
+  const mobileToggle = document.querySelector('.mobile-nav-toggle');
+  const scrollTopBtn = document.querySelector('.scroll-top');
+  const preloader = document.querySelector('#preloader');
+
+  // -------- Helpers
+  const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts || false);
+
+    // If we resize to desktop, ensure mobile overlay is cleared
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1200 && document.body.classList.contains('mobile-nav-active')) {
+      document.body.classList.remove('mobile-nav-active');
+      const t = document.querySelector('.mobile-nav-toggle');
+      if (t) { t.classList.remove('bi-x'); t.classList.add('bi-list'); t.setAttribute('aria-expanded','false'); }
+    }
+  });
+
+
+  // Robust local-time parser: supports "YYYY/MM/DD HH:mm[:ss]" or "YYYY-MM-DD HH:mm[:ss]" or ISO
+  const parseLocalDate = (raw) => {
+    if (!raw) return NaN;
+    const s = String(raw).trim();
+    // Try native first (handles ISO like 2025-11-01T12:00:00)
+    const t1 = Date.parse(s);
+    if (!Number.isNaN(t1)) return t1;
+
+    // Normalize separators and extract parts
+    const m = s
+      .replace(/[\/]/g, '-')                          // unify separators
+      .match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+
+    if (m) {
+      const [, y, mo, d, hh = '0', mm = '0', ss = '0'] = m;
+      const dt = new Date(
+        Number(y),
+        Number(mo) - 1,
+        Number(d),
+        Number(hh),
+        Number(mm),
+        Number(ss)
+      );
+      return dt.getTime();
+    }
+
+    return NaN;
+  };
+
+  // -------- Header + scroll-top state
+  const setScrollState = () => {
+    const y = window.scrollY || window.pageYOffset || 0;
+    if (header) header.classList.toggle('header-scrolled', y > 10);
+    body.classList.toggle('scrolled', y > 100); // compat if CSS ever uses it
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('active', y > 100);
+  };
+  on(window, 'scroll', setScrollState, { passive: true });
+  on(window, 'load', setScrollState);
+  on(document, 'DOMContentLoaded', setScrollState);
+
+  // -------- Mobile nav toggle
+  if (mobileToggle) {
+    on(mobileToggle, 'click', () => {
+      const isActive = body.classList.toggle('mobile-nav-active');
+      mobileToggle.classList.toggle('bi-x', isActive);
+      mobileToggle.classList.toggle('bi-list', !isActive);
+      mobileToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
   }
 
-  document.addEventListener('scroll', toggleScrolled);
-  window.addEventListener('load', toggleScrolled);
-
-  /**
-   * Mobile nav toggle
-   */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
-  }
-  if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-  }
-
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
+  // Close mobile nav on any nav link click
+  document.querySelectorAll('#navmenu a').forEach((link) => {
+    on(link, 'click', () => {
+      if (body.classList.contains('mobile-nav-active')) {
+        body.classList.remove('mobile-nav-active');
+        if (mobileToggle) {
+          mobileToggle.classList.remove('bi-x');
+          mobileToggle.classList.add('bi-list');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
       }
     });
-
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+  // -------- Preloader remove (robust)
+  const killPreloader = () => {
+    const p = document.getElementById('preloader');
+    if (p && p.parentNode) p.parentNode.removeChild(p);
+  };
+  on(window, 'load', killPreloader);
+  on(document, 'DOMContentLoaded', () => setTimeout(killPreloader, 1500)); // safety
+
+  // -------- Scroll-top behavior
+  if (scrollTopBtn) {
+    on(scrollTopBtn, 'click', (e) => {
       e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
-  /**
-   * Preloader
-   */
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  /**
-   * Scroll top button
-   */
-  let scrollTop = document.querySelector('.scroll-top');
-
-  function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+  // -------- AOS init (safe)
+  on(window, 'load', () => {
+    if (window.AOS && typeof window.AOS.init === 'function') {
+      window.AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false });
     }
-  }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
   });
 
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
-
-  /**
-   * Animation on scroll function and init
-   */
-  function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-  }
-  window.addEventListener('load', aosInit);
-
-  /**
-   * Countdown timer
-   */
-  function updateCountDown(countDownItem) {
-    const timeleft = new Date(countDownItem.getAttribute('data-count')).getTime() - new Date().getTime();
-
-    const days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-
-    countDownItem.querySelector('.count-days').innerHTML = days;
-    countDownItem.querySelector('.count-hours').innerHTML = hours;
-    countDownItem.querySelector('.count-minutes').innerHTML = minutes;
-    countDownItem.querySelector('.count-seconds').innerHTML = seconds;
-
+  // -------- Hero social links: ensure horizontal layout (Bootstrap utility)
+  const heroSocial = document.querySelector('#hero .social-links');
+  if (heroSocial) {
+    heroSocial.classList.add('d-flex', 'justify-content-center', 'gap-2');
   }
 
-  document.querySelectorAll('.countdown').forEach(function(countDownItem) {
-    updateCountDown(countDownItem);
-    setInterval(function() {
-      updateCountDown(countDownItem);
-    }, 1000);
+  // -------- Countdown (single implementation)
+  const timers = [];
+  const initCountdown = (root) => {
+    const targetMs = parseLocalDate(root.getAttribute('data-count') || '');
+    if (Number.isNaN(targetMs)) {
+      // Hide the widget if date is bad, so it doesn't look broken
+      root.style.display = 'none';
+      return null;
+    }
+
+    const els = {
+      days: root.querySelector('.count-days'),
+      hours: root.querySelector('.count-hours'),
+      minutes: root.querySelector('.count-minutes'),
+      seconds: root.querySelector('.count-seconds')
+    };
+
+    const pad = (n) => String(n).padStart(2, '0');
+
+    const tick = () => {
+      const now = Date.now();
+      let diff = Math.max(0, targetMs - now);
+
+      const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+      const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);    diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+
+      if (els.days) els.days.textContent = String(d);
+      if (els.hours) els.hours.textContent = pad(h);
+      if (els.minutes) els.minutes.textContent = pad(m);
+      if (els.seconds) els.seconds.textContent = pad(s);
+    };
+
+    tick();
+    return window.setInterval(tick, 1000);
+  };
+
+  document.querySelectorAll('.countdown').forEach((node) => {
+    const id = initCountdown(node);
+    if (id) timers.push(id);
   });
 
 })();
