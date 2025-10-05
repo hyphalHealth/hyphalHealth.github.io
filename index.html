@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <!--
   File: index.html
-  Project: Hyphal Health Co. — Coming Soon
+  Project: Hyphal Health Co. | Coming Soon
   Author: Faro Digital Studio
-  Updated: 2025-10-04
+  Updated: 10.04.2025
 -->
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>Hyphal Health Co. — Coming Soon</title>
+  <title>Hyphal Health Co. | Coming Soon</title>
 
   <!-- Meta / SEO -->
-  <meta name="description" content="Functional mushroom foods & formulas crafted for focus, recovery, and everyday resilience. Rooted in the Rio Grande Valley." />
-  <meta name="keywords" content="Hyphal Health, functional mushrooms, lion's mane, cordyceps, reishi, turkey tail, Rio Grande Valley" />
+  <meta name="description" content="Healthy mushroom snacks and dietary supplements for everyday life: jerky, chocolates, teas, and tinctures that support active living and overall wellbeing." />
+  <meta name="keywords" content="Hyphal Health, functional mushrooms, mushroom jerky, mushroom chocolates, mushroom tea, mushroom tinctures, healthy snacks" />
   <meta name="theme-color" content="#1f3e8a" />
   <link rel="canonical" href="https://hyphalhealth.com/" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Hyphal Health Co. — Coming Soon" />
-  <meta property="og:description" content="Functional mushroom foods & formulas for focus, recovery, and everyday resilience. Rooted in the Rio Grande Valley." />
+  <meta property="og:title" content="Hyphal Health Co. | Coming Soon" />
+  <meta property="og:description" content="Healthy mushroom snacks and dietary supplements: jerky, chocolates, teas, and tinctures." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hyphalhealth.com/" />
   <meta property="og:image" content="assets/img/og-banner.png" />
@@ -42,36 +41,46 @@
   <!-- Site CSS -->
   <link href="assets/css/main.css" rel="stylesheet" />
 
+  <!-- Critical overrides: keep content clickable and visible even if CSS/JS race conditions occur -->
+  <style>
+    /* Do not let overlays capture clicks */
+    #preloader, body::before { pointer-events: none !important; }
+    /* Ensure content sits above the page tint */
+    header, main, footer, section { position: relative; z-index: 1; }
+    /* If AOS fails to init, never hide content */
+    [data-aos] { opacity: 1 !important; transform: none !important; }
+  </style>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-621JZNRK00"></script>
   <script>
+    // Google Analytics
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-621JZNRK00');
   </script>
 
-  <!-- If JS is disabled, don't show the preloader spinner -->
+  <!-- If JS is disabled, hide the preloader -->
   <noscript><style>#preloader{display:none !important;}</style></noscript>
 </head>
 
 <body class="index-page">
-  <!-- Skip link for a11y -->
+  <!-- Skip link -->
   <a class="visually-hidden-focusable" href="#main">Skip to content</a>
 
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center px-3 fixed-top" role="banner" aria-label="Primary">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="#hero" class="logo d-flex align-items-center text-decoration-none" aria-label="Hyphal Health Co. — Home">
+      <a href="#hero" class="logo d-flex align-items-center text-decoration-none" aria-label="Hyphal Health Co. Home">
         <h1 class="sitename m-0">Hyphal Health Co.</h1>
       </a>
 
       <nav id="navmenu" class="navmenu" role="navigation" aria-label="Main navigation">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">Offerings</a></li>
         </ul>
         <button class="mobile-nav-toggle d-xl-none bi bi-list" type="button" aria-label="Toggle navigation" aria-controls="navmenu" aria-expanded="false"></button>
       </nav>
@@ -87,12 +96,19 @@
       <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
         <div class="row justify-content-center">
           <div class="col-lg-10">
-            <h2>Our <span class="accent-tag">new site</span> is fruiting soon</h2>
-            <p>Functional mushroom foods &amp; formulas crafted for focus, recovery, and everyday resilience.</p>
+            <h2>
+              Our
+              <span style="color:#80b7ff; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:3px;">New Site</span>
+              is fruiting soon
+            </h2>
+            <br>
+            <p><b>Wellness, Simplified.</b><br>Healthy mushroom-based snacks & supplements designed for everyday life.</p>
           </div>
 
-          <!-- Countdown (local time). Change date/time or remove block if not needed. -->
-          <div class="countdown d-flex justify-content-center" data-count="2025-11-01 12:00:00" aria-live="polite">
+          <!-- Countdown (use slash format for broadest browser support) -->
+          <div class="countdown d-flex justify-content-center"
+               data-count="2025/11/01 12:00:00"
+               aria-live="polite">
             <div><h3 class="count-days">--</h3><h4>Days</h4></div>
             <div><h3 class="count-hours">--</h3><h4>Hours</h4></div>
             <div><h3 class="count-minutes">--</h3><h4>Minutes</h4></div>
@@ -102,13 +118,19 @@
           <!-- CTAs -->
           <div class="col-lg-6 hero-cta">
             <div class="d-grid gap-2 mt-2">
-              <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://linktr.ee/hyphalhealth">Visit our Linktree</a>
-
-              <!-- Force horizontal layout to avoid stacking -->
-              <div class="social-links mt-2 d-flex justify-content-center gap-2" aria-label="Social links">
-                <a href="https://www.instagram.com/hyphalhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-                <a href="https://x.com/HyphalHealth" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
-                <a href="https://www.facebook.com/people/Hyphal-Health-Co/61571007059629/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+              <a class="btn btn-primary" href="https://linktr.ee/hyphalhealth" target="_blank" rel="noopener noreferrer" style="pointer-events:auto">Visit our Linktree</a>
+              <br>
+              <!-- Social -->
+              <div class="social-links d-flex justify-content-center gap-2 mt-2" aria-label="Social links" style="pointer-events:auto">
+                <a href="https://www.instagram.com/hyphalhealth" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="pointer-events:auto">
+                  <i class="bi bi-instagram fs-3" aria-hidden="true"></i>
+                </a>
+                <a href="https://x.com/HyphalHealth" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" style="pointer-events:auto">
+                  <i class="bi bi-twitter-x fs-3" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.facebook.com/people/Hyphal-Health-Co/61571007059629/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="pointer-events:auto">
+                  <i class="bi bi-facebook fs-3" aria-hidden="true"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -118,134 +140,91 @@
     </section>
     <!-- /Hero -->
 
-    <!-- About -->
+    <!-- About / Offerings -->
     <section id="about" class="about section" aria-labelledby="about-title">
       <div class="container section-title" data-aos="fade-up">
-        <h2 id="about-title">About Hyphal</h2>
-        <p>Rooted in the Rio Grande Valley. Built on science, flavor, and care.</p>
+        <h2 id="about-title">What We’re Making</h2>
+        <p>Everyday foods and formulas that make it easy to include more from mushrooms.</p>
       </div>
 
       <div class="container">
         <div class="row gy-5">
-
           <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
-            <h3>What we’re making</h3>
-            <p>From lion’s mane chocolate to reishi rest blends, our foods and formulas support daily focus, recovery, and calm—grounded in research and grown with care.</p>
+            <h3>Snacks and daily support</h3>
+            <p>We focus on enjoyable, functional products that fit real habits. Starting with high-protein mushroom jerky and small-batch chocolates, expanding into teas, tinctures, chips, and fresh bundles.</p>
+                <h4><span>Fresh & dried mushrooms</span>  <i class="bi bi-flower3" aria-hidden="true"></i></h4>
+                <p>Gourmet and medicinal selections for cooking or daily routines.</p>
           </div>
 
           <div class="col-xl-7" data-aos="fade-up" data-aos-delay="200">
             <div class="row gy-4">
               <div class="col-md-6 icon-box">
-                <i class="bi bi-heart-pulse" aria-hidden="true"></i>
-                <h4><span>Functional Formulas</span></h4>
-                <p>Thoughtfully dosed blends for cognition, calm, and endurance.</p>
+                <i class="bi bi-fire" aria-hidden="true"></i>
+                <h4><span>Jerky</span></h4>
+                <p>Protein-forward mushroom jerky for on the go fuel.</p>
+              </div>
+
+              <div class="col-md-6 icon-box">
+                <i class="bi bi-emoji-heart-eyes" aria-hidden="true"></i>
+                <h4><span>Chocolates</span></h4>
+                <p>Rich, shareable bars that make a simple daily ritual.</p>
               </div>
 
               <div class="col-md-6 icon-box">
                 <i class="bi bi-cup-hot" aria-hidden="true"></i>
-                <h4><span>Foods &amp; Drinks</span></h4>
-                <p>Chocolate, teas, and pantry staples for everyday rituals.</p>
+                <h4><span>Teas</span></h4>
+                <p>Comforting blends you can steep into your routine.</p>
               </div>
 
               <div class="col-md-6 icon-box">
-                <i class="bi bi-flower3" aria-hidden="true"></i>
-                <h4><span>Farm-First</span></h4>
-                <p>RGV-grown ingredients and partner farms focused on quality.</p>
+                <i class="bi bi-droplet-half" aria-hidden="true"></i>
+                <h4><span>Tinctures</span></h4>
+                <p>Versatile support you can add to water or take straight.</p>
               </div>
-
-              <div class="col-md-6 icon-box">
-                <i class="bi bi-people" aria-hidden="true"></i>
-                <h4><span>Community</span></h4>
-                <p>Markets, classes, and education—follow our upcoming events.</p>
-              </div>
+            
             </div>
           </div>
-
         </div>
       </div>
     </section>
     <!-- /About -->
-
-    <!-- Contact -->
-    <section id="contact" class="contact section" aria-labelledby="contact-title">
-      <div class="container section-title" data-aos="fade-up">
-        <h2 id="contact-title">Contact</h2>
-        <p>Based in the Rio Grande Valley—shipping soon.</p>
-      </div>
-
-      <div class="container" data-aos="fade" data-aos-delay="100">
-        <div class="row gy-4">
-
-          <div class="col-lg-4">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-geo-alt flex-shrink-0" aria-hidden="true"></i>
-              <div>
-                <h3>Location</h3>
-                <p>Rio Grande Valley, TX</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-            <div class="p-4 border rounded-3 border-white">
-              <div class="row gy-3 align-items-center">
-                <div class="col-md-12">
-                  <p class="mb-2">Looking for product drops &amp; market dates?</p>
-                </div>
-                <div class="col-md-6 d-grid">
-                  <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://linktr.ee/hyphalhealth">Follow our Linktree</a>
-                </div>
-                <div class="col-md-6 d-grid">
-                  <a class="btn btn-outline-light" target="_blank" rel="noopener noreferrer" href="https://linktr.ee/hyphalhealth">Social &amp; shop links</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <!-- /Contact -->
 
   </main>
 
   <!-- Footer -->
   <footer id="footer" class="footer" role="contentinfo">
     <div class="container">
-      <div class="row gy-3">
+      <div class="row gy-3 align-items-start">
+
+        <!-- Left: Location -->
         <div class="col-lg-4 col-md-6 d-flex">
           <i class="bi bi-geo-alt icon" aria-hidden="true"></i>
           <div class="address">
             <h4>Location</h4>
-            <p>Rio Grande Valley, TX</p>
+            <p class="mb-0">Rio Grande Valley, TX</p>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 d-flex">
-          <i class="bi bi-clock icon" aria-hidden="true"></i>
-          <div>
-            <h4>Status</h4>
-            <p>
-              <strong>Site:</strong> <span>Coming Soon</span><br />
-              <strong>Launch Target:</strong> <span>Nov 1, 2025 · 12:00 PM CT</span>
-            </p>
+        <!-- Center: Brand + Credits -->
+        <div class="col-lg-4 col-md-6 text-lg-center">
+          <div class="copyright">
+            <p class="mb-1">© <span>Copyright</span> <strong class="px-1 sitename">Hyphal Health Co.</strong> <span>All Rights Reserved</span></p>
+            <p class="mb-0">Powered by <a href="https://farodigitalstudio.com" target="_blank" rel="noopener noreferrer">Faro Digital Studio</a></p>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6">
+        <!-- Right: Follow Us -->
+        <div class="col-lg-4 col-md-12">
           <h4>Follow Us</h4>
           <div class="social-links d-flex">
-            <a href="https://www.instagram.com/hyphalhealth" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-            <a href="https://x.com/HyphalHealth" class="x" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="bi bi-twitter-x" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/people/Hyphal-Health-Co/61571007059629/" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-            <a href="https://linktr.ee/hyphalhealth" class="link" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><i class="bi bi-link-45deg" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/hyphalhealth" class="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://x.com/HyphalHealth" class="x" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.facebook.com/people/Hyphal-Health-Co/61571007059629/" class="facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://linktr.ee/hyphalhealth" class="link" target="_blank" rel="noopener noreferrer" aria-label="Linktree"><i class="bi bi-link-45deg"></i></a>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Hyphal Health Co.</strong> <span>All Rights Reserved</span></p>
+      </div>
     </div>
   </footer>
   <!-- /Footer -->
@@ -258,22 +237,62 @@
   <!-- Preloader -->
   <div id="preloader" aria-hidden="true"></div>
 
-  <!-- Vendor JS -->
+  <!-- Vendor JS (deferred) -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/vendor/aos/aos.js" defer></script>
 
-  <!-- Main JS -->
+  <!-- Main JS (deferred) -->
   <script src="hyphal.js" defer></script>
 
-  <!-- Fallback: ensure preloader never hangs even if main JS fails or load is slow -->
+  <!-- Safety: remove preloader and start a minimal countdown if main JS is blocked -->
   <script>
     (function () {
       function killPreloader() {
         var p = document.getElementById('preloader');
-        if (p && p.parentNode) p.parentNode.removeChild(p);
+        if (p && p.parentNode) { try { p.remove(); } catch(e){ p.style.display='none'; p.style.opacity='0'; p.style.pointerEvents='none'; } }
       }
       window.addEventListener('load', killPreloader);
-      document.addEventListener('DOMContentLoaded', function () { setTimeout(killPreloader, 2000); });
+      document.addEventListener('DOMContentLoaded', function(){ setTimeout(killPreloader, 2000); });
+
+      // Minimal, local-time countdown fallback
+      function parseLocal(raw){
+        if(!raw) return NaN;
+        var s = String(raw).trim().replace(/\//g,'-');
+        var m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
+        if(!m){ var n = Date.parse(raw); return isNaN(n)?NaN:n; }
+        var y=+m[1], mo=+m[2]-1, d=+m[3], h=+(m[4]||0), mi=+(m[5]||0), se=+(m[6]||0);
+        return new Date(y,mo,d,h,mi,se).getTime();
+      }
+      function ensureCountdown(){
+        var root = document.querySelector('.countdown');
+        if(!root) return;
+        if(root.dataset.hyphalTick) return; // already running
+        var target = parseLocal(root.getAttribute('data-count')||'');
+        if(isNaN(target)){ root.style.display='none'; return; }
+        var d=root.querySelector('.count-days'),
+            h=root.querySelector('.count-hours'),
+            m=root.querySelector('.count-minutes'),
+            s=root.querySelector('.count-seconds');
+        function pad(n){ return String(n).padStart(2,'0'); }
+        function tick(){
+          var now = Date.now();
+          var diff = Math.max(0, target - now);
+          var dd = Math.floor(diff/86400000); diff -= dd*86400000;
+          var hh = Math.floor(diff/3600000);  diff -= hh*3600000;
+          var mm = Math.floor(diff/60000);    diff -= mm*60000;
+          var ss = Math.floor(diff/1000);
+          if(d) d.textContent = String(dd);
+          if(h) h.textContent = pad(hh);
+          if(m) m.textContent = pad(mm);
+          if(s) s.textContent = pad(ss);
+        }
+        tick();
+        root.dataset.hyphalTick = '1';
+        setInterval(tick, 1000);
+      }
+      // try soon after parse, and again after load
+      document.addEventListener('DOMContentLoaded', function(){ setTimeout(ensureCountdown, 200); });
+      window.addEventListener('load', ensureCountdown);
     })();
   </script>
 </body>
