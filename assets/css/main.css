@@ -1,48 +1,44 @@
-/**
+/*--------------------------------------------------------------
   File: main.css
-  Project: Hyphal Health Co. | Coming Soon
+  Project: Hyphal Health | Coming Soon
+  Created: 10.04.2025
+  Updated: 10.06.2025
   Author: Faro Digital Studio
-  Updated: 10.04.2025
-*/
-
-/* ============================================================
-   FONT & COLOR VARIABLES
-   ============================================================ */
-
+--------------------------------------------------------------*/
+/* Fonts */
 :root {
-  --default-font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Inter", sans-serif;
-  --nav-font: "Inter", sans-serif;
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway",  sans-serif;
+  --nav-font: "Poppins",  sans-serif;
 }
 
-:root {
-  --hyphal-blue: #2f4f9f;
-  --hyphal-blue-deep: #1f3e8a;
-  --hyphal-ink: #1d2633;
-
-  --background-color: var(--hyphal-blue-deep);
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --accent-color: #ffffff;
-  --surface-color: transparent;
-  --contrast-color: var(--hyphal-ink);
-
-  --nav-color: #ffffff;
-  --nav-hover-color: #ffffff;
-  --nav-mobile-background-color: rgba(13, 23, 48, 0.96);
-  --nav-dropdown-background-color: rgba(13, 23, 48, 0.96);
-  --nav-dropdown-color: #ffffff;
-  --nav-dropdown-hover-color: #ffffff;
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root { 
+  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --default-color: #ffffff; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #3aaed9; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
-/* Optional presets */
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+:root {
+  --nav-color: #ffffff;  /* The default color of the main navmenu links */
+  --nav-hover-color: #3aaed9; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #384a59; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #566c7f; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #3aaed9; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+}
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
 .light-background {
   --background-color: #f9f9f9;
   --surface-color: #ffffff;
-  --default-color: #1b1b1b;
-  --heading-color: #151515;
-  --contrast-color: #151515;
 }
+
 .dark-background {
   --background-color: #060606;
   --default-color: #ffffff;
@@ -50,323 +46,1224 @@
   --surface-color: #252525;
   --contrast-color: #ffffff;
 }
+
 .transparent-background {
   --background-color: rgba(255, 255, 255, 0);
   --contrast-color: #5b5b5b;
 }
 
 /* Smooth scroll */
-:root { scroll-behavior: smooth; }
+:root {
+  scroll-behavior: smooth;
+}
 
-/* ============================================================
-   GENERAL STYLING
-   ============================================================ */
-
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
 body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
-
-  /* Background image path relative to this CSS file (assets/css/) */
-  background-image: url("../img/bg.jpg");
-  background-position: top center;
-  background-repeat: no-repeat;
+  background: url(../img/bg.jpg) top center no-repeat;
   background-size: cover;
   position: relative;
 }
-@media (min-width: 1366px) {
-  body { background-attachment: fixed; }
-}
 
-/* Tinted overlay above background image — pointer-events disabled so it never blocks clicks */
 body::before {
   content: "";
   position: absolute;
-  inset: 0;
-  /* slightly lighter to reveal the image more clearly */
-  background: rgba(31, 62, 138, 0.55);
-  z-index: 0;
-  pointer-events: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(30, 47, 47, 0.7);
 }
 
-/* Ensure page content sits above overlay */
-header, footer, .main, main, section, .section { position: relative; z-index: 1; }
+@media (min-width: 1366px) {
+  body {
+    background-attachment: fixed;
+  }
+}
 
-/* Links & headings */
-a { color: var(--accent-color); text-decoration: none; transition: 0.3s; }
-a:hover { color: rgba(255,255,255,.9); text-decoration: none; }
-h1, h2, h3, h4, h5, h6 { color: var(--heading-color); font-family: var(--heading-font); letter-spacing: .2px; }
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-/* ============================================================
-   PHP EMAIL FORM (compat)
-   ============================================================ */
-.php-email-form .error-message{display:none;background:#df1529;color:#fff;text-align:left;padding:15px;margin-bottom:24px;font-weight:600;}
-.php-email-form .sent-message{display:none;color:#fff;background:#059652;text-align:center;padding:15px;margin-bottom:24px;font-weight:600;}
-.php-email-form .loading{display:none;background:var(--surface-color);text-align:center;padding:15px;margin-bottom:24px;}
-.php-email-form .loading:before{content:"";display:inline-block;border-radius:50%;width:24px;height:24px;margin:0 10px -6px 0;border:3px solid var(--accent-color);border-top-color:var(--surface-color);animation:php-email-form-loading 1s linear infinite;}
-@keyframes php-email-form-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
 
-/* ============================================================
-   HEADER
-   ============================================================ */
-.header{
-  --background-color: rgba(255,255,255,0);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+/* PHP Email Form Messages
+------------------------------*/
+.php-email-form .error-message {
+  display: none;
+  background: #df1529;
+  color: #ffffff;
+  text-align: left;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .sent-message {
+  display: none;
+  color: #ffffff;
+  background: #059652;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.php-email-form .loading {
+  display: none;
+  background: var(--surface-color);
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 24px;
+}
+
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color);
+  animation: php-email-form-loading 1s linear infinite;
+}
+
+@keyframes php-email-form-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Header
+--------------------------------------------------------------*/
+.header {
+  --background-color: rgba(255, 255, 255, 0);
   color: var(--default-color);
   background-color: var(--background-color);
   padding: 15px 0;
-  transition: background-color .25s ease, box-shadow .25s ease;
+  transition: all 0.5s;
   z-index: 997;
 }
-.header .logo{ line-height:1; }
-.header .logo img{ max-height:32px; margin-right:8px; }
-.header .logo h1{ font-size:30px; margin:0; font-weight:800; color:#fff; }
 
-.header.header-scrolled{
-  --background-color:#ffffff;
-  background-color:var(--background-color);
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
-  --nav-color: var(--hyphal-ink);
-  --nav-hover-color: var(--hyphal-ink);
-  --heading-color: var(--hyphal-ink);
+.header .logo {
+  line-height: 1;
 }
-.header.header-scrolled .logo h1{ color: var(--hyphal-ink); }
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
-@media (min-width:1200px){
-  .navmenu{ padding:0; }
-  .navmenu ul{ margin:0; padding:0; display:flex; list-style:none; align-items:center; }
-  .navmenu li{ position:relative; }
-  .navmenu a, .navmenu a:focus{
-    color:var(--nav-color); padding:18px 15px; font-size:16px;
-    font-family:var(--nav-font); font-weight:600; display:flex; align-items:center;
-    justify-content:space-between; white-space:nowrap; transition:.3s;
-  }
-  .navmenu a i, .navmenu a:focus i{ font-size:12px; line-height:0; margin-left:5px; transition:.3s; }
-  .navmenu li:last-child a{ padding-right:0; }
-  .navmenu li:hover > a, .navmenu .active, .navmenu .active:focus{ color:var(--nav-hover-color); opacity:.9; }
+.header .logo img {
+  max-height: 32px;
+  margin-right: 8px;
+}
 
-  .navmenu .dropdown ul{
-    margin:0; padding:10px 0; background:var(--nav-dropdown-background-color);
-    display:block; position:absolute; visibility:hidden; left:14px; top:130%;
-    opacity:0; transition:.3s; border-radius:6px; z-index:99;
-    box-shadow:0 0 30px rgba(0,0,0,.1);
+.header .logo h1 {
+  font-size: 30px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Navmenu - Desktop */
+@media (min-width: 1200px) {
+  .navmenu {
+    padding: 0;
   }
-  .navmenu .dropdown ul li{ min-width:200px; }
-  .navmenu .dropdown ul a{ padding:10px 20px; font-size:15px; color:var(--nav-dropdown-color); }
+
+  .navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+
+  .navmenu li {
+    position: relative;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-color);
+    padding: 18px 15px;
+    font-size: 16px;
+    font-family: var(--nav-font);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+  }
+
+  .navmenu li:last-child a {
+    padding-right: 0;
+  }
+
+  .navmenu li:hover>a,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-hover-color);
+  }
+
+  .navmenu .dropdown ul {
+    margin: 0;
+    padding: 10px 0;
+    background: var(--nav-dropdown-background-color);
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    left: 14px;
+    top: 130%;
+    opacity: 0;
+    transition: 0.3s;
+    border-radius: 4px;
+    z-index: 99;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .navmenu .dropdown ul li {
+    min-width: 200px;
+  }
+
+  .navmenu .dropdown ul a {
+    padding: 10px 20px;
+    font-size: 15px;
+    text-transform: none;
+    color: var(--nav-dropdown-color);
+  }
+
+  .navmenu .dropdown ul a i {
+    font-size: 12px;
+  }
+
   .navmenu .dropdown ul a:hover,
   .navmenu .dropdown ul .active:hover,
-  .navmenu .dropdown ul li:hover > a{ color:var(--nav-dropdown-hover-color); }
-  .navmenu .dropdown:hover > ul{ opacity:1; top:100%; visibility:visible; }
-  .navmenu .dropdown .dropdown ul{ top:0; left:-90%; visibility:hidden; }
-  .navmenu .dropdown .dropdown:hover > ul{ opacity:1; left:-100%; visibility:visible; }
-}
-@media (max-width:1199px){
-  .mobile-nav-toggle{ color:var(--nav-color); font-size:28px; line-height:0; margin-right:10px; cursor:pointer; transition: color .3s; }
-  .navmenu{ padding:0; z-index:9997; }
-  .navmenu ul{
-    display:none; list-style:none; position:absolute; inset:60px 20px 20px;
-    padding:10px 0; margin:0; border-radius:8px; background:var(--nav-mobile-background-color);
-    overflow-y:auto; transition:.3s; z-index:9998; box-shadow:0 0 30px rgba(0,0,0,.15);
+  .navmenu .dropdown ul li:hover>a {
+    color: var(--nav-dropdown-hover-color);
   }
-  .navmenu a, .navmenu a:focus{
-    color:var(--nav-dropdown-color); padding:12px 20px; font-family:var(--nav-font);
-    font-size:17px; font-weight:600; display:flex; align-items:center; justify-content:space-between; transition:.3s;
+
+  .navmenu .dropdown:hover>ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
   }
-  .navmenu a i, .navmenu a:focus i{
-    font-size:12px; line-height:0; margin-left:5px; width:30px; height:30px;
-    display:flex; align-items:center; justify-content:center; border-radius:50%;
-    background: rgba(255,255,255,.08); transition:.3s;
+
+  .navmenu .dropdown .dropdown ul {
+    top: 0;
+    left: -90%;
+    visibility: hidden;
   }
-  .navmenu a:hover, .navmenu .active, .navmenu .active:focus{ color:#fff; opacity:.9; }
-  .mobile-nav-active{ overflow:hidden; }
-  .mobile-nav-active .mobile-nav-toggle{ color:#fff; position:absolute; font-size:32px; top:15px; right:15px; margin-right:0; z-index:9999; }
-  .mobile-nav-active .navmenu{ position:fixed; overflow:hidden; inset:0; background: rgba(0,0,0,.5); transition:.3s; }
-  .mobile-nav-active .navmenu > ul{ display:block; }
+
+  .navmenu .dropdown .dropdown:hover>ul {
+    opacity: 1;
+    top: 0;
+    left: -100%;
+    visibility: visible;
+  }
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
-.footer{
-  --background-color: rgba(255,255,255,0);
+/* Navmenu - Mobile */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    color: var(--nav-color);
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .navmenu {
+    padding: 0;
+    z-index: 9997;
+  }
+
+  .navmenu ul {
+    display: none;
+    list-style: none;
+    position: absolute;
+    inset: 60px 20px 20px 20px;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 6px;
+    background-color: var(--nav-mobile-background-color);
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 9998;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-dropdown-color);
+    padding: 10px 20px;
+    font-family: var(--nav-font);
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  }
+
+  .navmenu a i:hover,
+  .navmenu a:focus i:hover {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+
+  .navmenu a:hover,
+  .navmenu .active,
+  .navmenu .active:focus {
+    color: var(--nav-dropdown-hover-color);
+  }
+
+  .navmenu .active i,
+  .navmenu .active:focus i {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    transform: rotate(180deg);
+  }
+
+  .navmenu .dropdown ul {
+    position: static;
+    display: none;
+    z-index: 99;
+    padding: 10px 0;
+    margin: 10px 20px;
+    background-color: var(--nav-dropdown-background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    box-shadow: none;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .navmenu .dropdown ul ul {
+    background-color: rgba(33, 37, 41, 0.1);
+  }
+
+  .navmenu .dropdown>.dropdown-active {
+    display: block;
+    background-color: rgba(33, 37, 41, 0.03);
+  }
+
+  .mobile-nav-active {
+    overflow: hidden;
+  }
+
+  .mobile-nav-active .mobile-nav-toggle {
+    color: #fff;
+    position: absolute;
+    font-size: 32px;
+    top: 15px;
+    right: 15px;
+    margin-right: 0;
+    z-index: 9999;
+  }
+
+  .mobile-nav-active .navmenu {
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    background: rgba(33, 37, 41, 0.8);
+    transition: 0.3s;
+  }
+
+  .mobile-nav-active .navmenu>ul {
+    display: block;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Footer
+--------------------------------------------------------------*/
+.footer {
+  --background-color: rgba(255, 255, 255, 0);
   color: var(--default-color);
   background-color: var(--background-color);
-  font-size:14px;
-  padding: 48px 0 28px; /* increased vertical rhythm */
-  position:relative;
+  font-size: 14px;
+  padding: 40px 0 0 0;
+  position: relative;
 }
-.footer .icon{ color:#fff; margin-right:15px; font-size:24px; line-height:0; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
-.footer h4{ font-size:16px; font-weight:800; margin-bottom:12px; }
-.footer .address p{ margin-bottom:0; }
 
-/* Social buttons — larger hit targets and consistent spacing */
-.footer .social-links,
-.hero .social-links{ display:flex; gap:10px; flex-wrap:wrap; }
-
-.footer .social-links a,
-.hero .social-links a{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:48px; height:48px; /* bigger */
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.35);
-  font-size:20px; /* bigger icon */
-  color:#fff; transition:.15s ease;
-  background: rgba(255,255,255,.06); backdrop-filter: blur(3px);
+.footer .icon {
+  color: var(--accent-color);
+  margin-right: 15px;
+  font-size: 24px;
+  line-height: 0;
 }
-.footer .social-links a:hover,
-.hero .social-links a:hover{ transform: translateY(-1px); border-color:#fff; background: rgba(255,255,255,.14); }
 
-/* Center column copy spacing */
-.footer .copyright{
-  padding: 0;    /* remove inner border spacing */
-  border-top: none;
+.footer h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
-.footer .copyright p{ margin-bottom:6px; }
 
-/* ============================================================
-   PRELOADER
-   ============================================================ */
-#preloader{
-  position:fixed; inset:0; z-index:999999; overflow:hidden;
+.footer .address p {
+  margin-bottom: 0px;
+}
+
+.footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  font-size: 16px;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.footer .copyright {
+  padding: 25px 0;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.footer .copyright p {
+  margin-bottom: 0;
+}
+
+.footer .credits {
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow: hidden;
   background: var(--background-color);
   transition: all 0.6s ease-out;
-  pointer-events: none; /* never block clicks */
 }
-#preloader:before{
-  content:""; position:fixed; top:calc(50% - 30px); left:calc(50% - 30px);
-  border:6px solid #ffffff;
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #ffffff;
   border-color: var(--accent-color) transparent var(--accent-color) transparent;
-  border-radius:50%; width:60px; height:60px; animation: animate-preloader 1.5s linear infinite;
-}
-@keyframes animate-preloader{0%{transform: rotate(0)}100%{transform: rotate(360deg)}}
-
-/* ============================================================
-   SCROLL TOP
-   ============================================================ */
-.scroll-top{
-  position:fixed; visibility:hidden; opacity:0; right:15px; bottom:-15px;
-  z-index:99999; background:#fff; color:var(--contrast-color);
-  width:44px; height:44px; border-radius:50px; transition:all 0.3s;
-  display:flex; align-items:center; justify-content:center;
-}
-.scroll-top i{ font-size:24px; line-height:0; }
-.scroll-top:hover{ transform: translateY(-2px); }
-.scroll-top.active{ visibility:visible; opacity:1; bottom:15px; }
-
-/* ============================================================
-   AOS: DISABLE DELAYS ON MOBILE
-   ============================================================ */
-@media (max-width:768px){
-  [data-aos-delay]{ transition-delay:0 !important; }
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1.5s linear infinite;
 }
 
-/* ============================================================
-   PAGE TITLES & BREADCRUMBS
-   ============================================================ */
-.page-title{ color:var(--default-color); background-color:var(--background-color); position:relative; }
-.page-title .heading{ padding:80px 0; border-top:1px solid rgba(255,255,255,.1); }
-.page-title .heading h1{ font-size:38px; font-weight:800; }
-.page-title nav{ background-color: rgba(255,255,255,.04); padding:20px 0; }
-.page-title nav ol{ display:flex; flex-wrap:wrap; list-style:none; margin:0; font-size:16px; font-weight:600; }
-.page-title nav ol li+li{ padding-left:10px; }
-.page-title nav ol li+li::before{ content:"/"; display:inline-block; padding-right:10px; color: rgba(255,255,255,.6); }
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
 
-/* ============================================================
-   SECTIONS
-   ============================================================ */
-section, .section{
-  color:var(--default-color);
-  background-color:var(--background-color);
-  padding:60px 0; scroll-margin-top:90px;
-  overflow: clip; position:relative;
-}
-@media (max-width:1199px){ section, .section{ scroll-margin-top:66px; } }
-
-.section-title{ text-align:center; padding-bottom:60px; position:relative; }
-.section-title h2{ font-size:32px; font-weight:800; margin-bottom:20px; padding-bottom:20px; position:relative; }
-.section-title h2:after{
-  content:""; position:absolute; display:block; width:50px; height:3px;
-  background: var(--accent-color); left:0; right:0; bottom:0; margin:auto; border-radius:2px;
-}
-.section-title p{ margin-bottom:0; }
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{
-  --background-color: rgba(255,255,255,0);
-  width:100%; min-height:100vh; position:relative;
-  padding:100px 0 80px;
-  display:flex; align-items:center; justify-content:center;
-}
-.hero h2{ margin:0; font-size:48px; font-weight:800; text-shadow:0 1px 1px rgba(0,0,0,.25); }
-.hero p{ margin:10px 0 0; font-size:24px; color:var(--heading-color); text-shadow:0 1px 1px rgba(0,0,0,.25); }
-@media (max-width:768px){ .hero h2{ font-size:32px; } .hero p{ font-size:18px; } }
-
-/* Accent pill (kept if used elsewhere) */
-.accent-tag{
-  display:inline-block; border:2px solid #fff; color:#fff;
-  border-radius:9999px; padding:.12rem .65rem; line-height:1; font-weight:800; letter-spacing:.35px;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* Countdown */
-.hero .countdown{ margin-top:25px; display:flex; gap:22px; }
-.hero .countdown div{
-  text-align:center; border:1px solid rgba(255,255,255,.28); border-radius:12px;
-  margin:10px 10px; width:100px; padding:15px 0;
-  background: rgba(255,255,255,.06); backdrop-filter: blur(3px);
-}
-.hero .countdown div h3{ font-weight:800; font-size:32px; margin-bottom:12px; }
-.hero .countdown div h4{ font-size:16px; font-weight:600; opacity:.85; }
-@media (max-width:575px){
-  .hero .countdown div{ width:70px; padding:10px 0; margin:10px 8px; }
-  .hero .countdown div h3{ font-size:28px; margin-bottom:10px; }
-  .hero .countdown div h4{ font-size:14px; font-weight:500; }
-}
-
-/* Hero CTAs */
-.hero .hero-newsletter, .hero .hero-cta{ margin-top:25px; }
-.hero .hero-newsletter p{ font-size:18px; margin:0 0 15px; }
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
-.btn, a.btn{ --bs-btn-padding-y:.675rem; --bs-btn-padding-x:1.15rem; --bs-btn-border-radius:9999px; font-weight:800; }
-.btn-primary{ background:#fff; border:2px solid #fff; color:var(--hyphal-blue-deep); }
-.btn-primary:hover, .btn-primary:focus{ background:transparent; color:#fff; border-color:#fff; }
-.btn-outline-light{ background:transparent; border:2px solid #fff; color:#fff; }
-.btn-outline-light:hover, .btn-outline-light:focus{ background:#fff; color:var(--hyphal-blue-deep); }
-
-/* Focus rings on dark */
-a:focus-visible, button:focus-visible, .btn:focus-visible, .social-links a:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
-
-/* ============================================================
-   ABOUT
-   ============================================================ */
-.about .content h3{ font-weight:800; font-size:34px; margin-bottom:30px; }
-.about .content p{ margin-bottom:30px; }
-.about .icon-box i{ font-size:40px; color:#fff; margin-bottom:10px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
-.about .icon-box h4{ font-size:20px; font-weight:800; margin:0 0 10px; }
-.about .icon-box p{ font-size:15px; color: rgba(255,255,255,.9); margin-bottom:0; }
-
-/* ============================================================
-   UTILITIES
-   ============================================================ */
-.border-white{ border-color: rgba(255,255,255,.45) !important; }
-
-.visually-hidden-focusable:not(:focus):not(:focus-within){
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: -15px;
+  z-index: 99999;
+  background-color: var(--accent-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
 }
 
-/* ============================================================
-   CRITICAL QUICK FIXES
-   ============================================================ */
+.scroll-top i {
+  font-size: 24px;
+  color: var(--contrast-color);
+  line-height: 0;
+}
 
-/* 1) If AOS fails to initialize, never hide content */
-[data-aos] { opacity: 1 !important; transform: none !important; }
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+  color: var(--contrast-color);
+}
 
-/* 2) Ensure overlays never block clicks */
-#preloader, body::before { pointer-events: none !important; }
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+  bottom: 15px;
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Page Titles & Breadcrumbs
+--------------------------------------------------------------*/
+.page-title {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  position: relative;
+}
+
+.page-title .heading {
+  padding: 80px 0;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.page-title .heading h1 {
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.page-title nav {
+  background-color: color-mix(in srgb, var(--default-color), transparent 95%);
+  padding: 20px 0;
+}
+
+.page-title nav ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.page-title nav ol li+li {
+  padding-left: 10px;
+}
+
+.page-title nav ol li+li::before {
+  content: "/";
+  display: inline-block;
+  padding-right: 10px;
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+/*--------------------------------------------------------------
+# Global Sections
+--------------------------------------------------------------*/
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 60px 0;
+  scroll-margin-top: 90px;
+  overflow: clip;
+  position: relative;
+}
+
+@media (max-width: 1199px) {
+
+  section,
+  .section {
+    scroll-margin-top: 66px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-title h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent-color);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  --background-color: rgba(255, 255, 255, 0);
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding: 80px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h2 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.hero p {
+  margin: 10px 0 0 0;
+  font-size: 24px;
+  color: var(--heading-color);
+}
+
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+}
+
+.hero .countdown {
+  margin-top: 25px;
+}
+
+.hero .countdown div {
+  text-align: center;
+  border: 2px solid color-mix(in srgb, var(--default-color), white 90%);
+  border-radius: 8px;
+  margin: 10px 10px;
+  width: 100px;
+  padding: 15px 0;
+}
+
+.hero .countdown div h3 {
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.hero .countdown div h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (max-width: 575px) {
+  .hero .countdown div {
+    width: 70px;
+    padding: 10px 0;
+    margin: 10px 8px;
+  }
+
+  .hero .countdown div h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .hero .countdown div h4 {
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.hero .hero-newsletter {
+  margin-top: 25px;
+}
+
+.hero .hero-newsletter p {
+  font-size: 18px;
+  margin: 0 0 15px 0;
+}
+
+.hero .hero-newsletter .newsletter-form {
+  margin-bottom: 15px;
+  padding: 6px 8px;
+  position: relative;
+  background-color: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  box-shadow: 0px 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  transition: 0.3s;
+  border-radius: 50px;
+}
+
+.hero .hero-newsletter .newsletter-form:focus-within {
+  border-color: var(--accent-color);
+}
+
+.hero .hero-newsletter .newsletter-form input[type=email] {
+  border: 0;
+  padding: 4px;
+  width: 100%;
+  background-color: var(--surface-color);
+  color: var(--contrast-color);
+}
+
+.hero .hero-newsletter .newsletter-form input[type=email]:focus-visible {
+  outline: none;
+}
+
+.hero .hero-newsletter .newsletter-form input[type=submit] {
+  border: 0;
+  font-size: 16px;
+  padding: 0 20px;
+  margin: -7px -9px -7px 0;
+  background: var(--accent-color);
+  color: var(--default-color);
+  transition: 0.3s;
+  border-radius: 50px;
+}
+
+.hero .hero-newsletter .newsletter-form input[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+.hero .social-links {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+  font-size: 16px;
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.hero .social-links a:hover {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+.about .content h3 {
+  font-weight: 700;
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+.about .content p {
+  margin-bottom: 30px;
+}
+
+.about .content .about-btn {
+  padding: 8px 30px 9px 30px;
+  color: var(--accent-color);
+  border-radius: 50px;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid var(--accent-color);
+}
+
+.about .content .about-btn i {
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+.about .content .about-btn:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.about .icon-box i {
+  font-size: 40px;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.about .icon-box h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.about .icon-box h4 a {
+  color: var(--heading-color);
+  transition: 0.3s;
+}
+
+.about .icon-box p {
+  font-size: 15px;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  margin-bottom: 0;
+}
+
+.about .icon-box:hover h4 a {
+  color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.contact .info-item+.info-item {
+  margin-top: 40px;
+}
+
+.contact .info-item i {
+  color: var(--accent-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  margin-right: 15px;
+}
+
+.contact .info-item h3 {
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.contact .info-item p {
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.contact .info-item:hover i {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.contact .php-email-form {
+  height: 100%;
+}
+
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--default-color);
+  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=email]:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.contact .php-email-form input[type=text]::placeholder,
+.contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form textarea::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+.contact .php-email-form button[type=submit] {
+  color: var(--default-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 10px 30px;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.contact .php-email-form button[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+/* ==============================================================
+   Faro Theme Overrides
+   Palette: Gold #3aaed9 | Slate #1e2f2f | Gray #d8d8d8 | White #ffffff
+   Place at end of main.css so it wins specificity via cascade.
+   ============================================================== */
+
+/* Brand variables */
+:root {
+  /* Global */
+  --accent-color: #3aaed9;            /* buttons, links, underlines */
+  --background-color: #ffffff;        /* keep sections on white */
+  --default-color: #ffffff;           /* primary text over hero (dark overlay) */
+  --heading-color: #ffffff;           /* headings over hero (dark overlay) */
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+
+  /* Nav */
+  --nav-color: #ffffff;
+  --nav-hover-color: #3aaed9;
+  --nav-mobile-background-color: #1e2f2f;   /* slate */
+  --nav-dropdown-background-color: #1e2f2f; /* unify to slate */
+  --nav-dropdown-color: #ffffff;
+  --nav-dropdown-hover-color: #3aaed9;
+}
+
+/* Dark slate overlay over the hero background image */
+body::before {
+  /* rgba(77,93,106,0.72) based on #1e2f2f */
+  background: rgba(30, 47, 47, 0.7);
+}
+
+/* Section title underline (already uses --accent-color, but ensure crispness) */
+.section-title h2:after {
+  background: var(--accent-color);
+}
+
+/* Buttons used in CTAs (Bootstrap helpers + template classes) */
+.btn-primary,
+.hero .hero-newsletter .newsletter-form input[type=submit] {
+  background-color: #3aaed9;
+  border-color: #3aaed9;
+  color: #111;
+}
+.btn-primary:hover,
+.hero .hero-newsletter .newsletter-form input[type=submit]:hover {
+  background-color: color-mix(in srgb, #3aaed9, black 8%);
+  border-color: color-mix(in srgb, #3aaed9, black 8%);
+  color: #111;
+}
+
+.btn-outline-secondary {
+  border-color: #1e2f2f;
+  color: #1e2f2f;
+  background: transparent;
+}
+.btn-outline-secondary:hover {
+  background: #1e2f2f;
+  border-color: #1e2f2f;
+  color: #ffffff;
+}
+
+/* Footer + social accents kept consistent */
+.footer .icon,
+.footer .social-links a:hover,
+.hero .social-links a:hover {
+  color: #3aaed9;
+  border-color: #3aaed9;
+}
+
+/* Countdown boxes: give a touch more definition on light displays */
+.hero .countdown div {
+  border-color: color-mix(in srgb, #1e2f2f, white 85%);
+}
+
+/* ==============================================================
+   Faro Theme — Iteration 2 Tweaks
+   ============================================================== */
+
+/* Secondary buttons (Linktree, Email) */
+.btn-outline-secondary {
+  border-color: #3aaed9;
+  color: #3aaed9;
+  background: rgba(77, 93, 106, 0.08); /* faint slate background so it’s visible */
+}
+.btn-outline-secondary:hover {
+  background: #3aaed9;
+  border-color: #3aaed9;
+  color: #ffffff;
+}
+
+/* Location highlight in gold */
+#contact .info-item h3 + p,
+.footer .address p {
+  color: #3aaed9;
+  font-weight: 600;
+}
+
+.text-accent {
+  color: #3aaed9;
+}
+
+/* ==============================================================
+   Faro Theme — Sticky Header on Scroll
+   ============================================================== */
+.header.header-scrolled {
+  /* light “glass” background */
+  --background-color: rgba(255, 255, 255, 0.86);
+  background-color: var(--background-color);
+  backdrop-filter: saturate(140%) blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* switch nav/link colors for readability on light bg */
+.header.header-scrolled {
+  --nav-color: #1e2f2f;           /* slate links */
+  --nav-hover-color: #3aaed9;     /* gold hover */
+  --heading-color: #0f1418;       /* site name color */
+}
+
+.header.header-scrolled .logo h1 {
+  color: var(--heading-color);
+}
+
+/* mobile toggle stays readable */
+@media (max-width: 1199px) {
+  .header.header-scrolled .mobile-nav-toggle {
+    color: #1e2f2f;
+  }
+}
+
+/* ==============================================================
+   Faro Theme — Brand name color
+   ============================================================== */
+.header .logo h1 {
+  color: #1e2f2f; /* Faro Slate */
+}
+
+/* Keep it slate even after the header gains a background on scroll */
+.header.header-scrolled .logo h1 {
+  color: #1e2f2f;
+}
+
+/* ==============================================================
+   Faro Theme — Brand name color by header state
+   ============================================================== */
+
+/* Default (top of page, transparent header): white text over dark overlay */
+.header .logo h1 {
+  color: #ffffff;
+}
+
+/* After scroll (header gets light bg): switch to Faro Slate */
+.header.header-scrolled .logo h1 {
+  color: #1e2f2f; /* Faro Slate */
+}
+
+/* Make the section subtitle a touch bigger */
+.lead-subtitle { font-size: 1.15rem; font-weight: 600; }
+@media (min-width: 992px) { .lead-subtitle { font-size: 1.25rem; } }
+
+/* ==============================================================
+   Ledger & Flow — Gold-First Iteration (drop at end of main.css)
+   Goals:
+   • All accents (buttons, links, icons, hovers) = GOLD
+   • Green only as background hue/overlay
+   • Minimal + safe overrides; no layout changes
+   ============================================================== */
+
+/* Brand tokens */
+:root {
+  --brand-gold:  #3aaed9;  /* L&F Gold */
+  --brand-green: #1e2f2f;  /* Background hue only */
+
+  /* map global accent to GOLD */
+  --accent-color: var(--brand-gold);
+
+  /* nav colors */
+  --nav-hover-color: var(--brand-gold);
+  --nav-mobile-background-color: #1e2f2f;      /* deep slate backdrop */
+  --nav-dropdown-background-color: #1e2f2f;
+  --nav-dropdown-hover-color: var(--brand-gold);
+}
+
+/* =============== Background hue (put green into the atmosphere) =============== */
+/* Use a green-tinted overlay for the hero/backdrop so gold pops on top */
+body::before {
+  /* fallback rgba + modern color-mix for wider support */
+  background: rgba(30, 47, 47, 0.7); /* #0b6e4f @60% */
+  background: color-mix(in srgb, var(--brand-green), transparent 40%);
+}
+
+/* =============== Links & text accents =============== */
+a { color: var(--brand-gold); }
+a:hover { color: color-mix(in srgb, var(--brand-gold), black 14%); }
+.text-accent { color: var(--brand-gold); }
+
+/* Section title underline */
+.section-title h2:after { background: var(--brand-gold); }
+
+/* =============== Header (transparent → sticky) =============== */
+/* Keep site name white over dark hero; switch to slate on scroll */
+.header .logo h1 { color: #ffffff; }
+.header.header-scrolled {
+  --background-color: rgba(255,255,255,0.92);
+  background-color: var(--background-color);
+  backdrop-filter: saturate(140%) blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+  --nav-color: #1e2f2f;                 /* readable on light header */
+  --nav-hover-color: var(--brand-gold); /* GOLD highlight */
+  --heading-color: #1b1f23;
+}
+.header.header-scrolled .logo h1 { color: #1e2f2f; }
+
+/* =============== Buttons (primary = gold fill, secondary = gold outline) =============== */
+.btn,
+button,
+input[type="submit"] { border-radius: 12px; }
+
+.btn-primary,
+.hero .hero-newsletter .newsletter-form input[type=submit] {
+  background-color: var(--brand-gold);
+  border-color: var(--brand-gold);
+  color: #1b1f23; /* darker text for contrast on gold */
+}
+.btn-primary:hover,
+.hero .hero-newsletter .newsletter-form input[type=submit]:hover {
+  background-color: color-mix(in srgb, var(--brand-gold), black 12%);
+  border-color: color-mix(in srgb, var(--brand-gold), black 12%);
+  color: #101417;
+}
+
+.btn-outline-secondary {
+  border-color: var(--brand-gold);
+  color: var(--brand-gold);
+  background: rgba(223, 165, 102, 0.08);
+}
+.btn-outline-secondary:hover {
+  background: var(--brand-gold);
+  border-color: var(--brand-gold);
+  color: #1b1f23;
+}
+
+/* Keyboard focus ring (accessible, gold-tinted) */
+a:focus,
+button:focus,
+.btn:focus,
+input[type="submit"]:focus {
+  outline: 3px solid color-mix(in srgb, var(--brand-gold), white 35%);
+  outline-offset: 2px;
+}
+
+/* =============== Icons & Socials =============== */
+/* About + footer icons should read as gold accents */
+.about .icon-box i,
+.footer .icon { color: var(--brand-gold); }
+
+/* Social buttons hover to gold */
+.hero .social-links a,
+.footer .social-links a {
+  border-color: color-mix(in srgb, #ffffff, transparent 55%);
+  color: color-mix(in srgb, #ffffff, transparent 25%);
+}
+.hero .social-links a:hover,
+.footer .social-links a:hover {
+  color: var(--brand-gold);
+  border-color: var(--brand-gold);
+}
+
+/* =============== Countdown cosmetics =============== */
+.hero .countdown div {
+  border-color: color-mix(in srgb, #ffffff, black 12%);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+/* =============== Footer details =============== */
+.footer .address p {
+  color: var(--brand-gold);
+  font-weight: 600;
+}
+.footer .copyright {
+  border-top: 1px solid color-mix(in srgb, #ffffff, transparent 88%);
+}
+
+/* =============== Scroll-to-top =============== */
+.scroll-top {
+  background-color: var(--brand-gold);
+}
+.scroll-top:hover {
+  background-color: color-mix(in srgb, var(--brand-gold), black 12%);
+}
+
+/* =============== Mobile nav icon chip hover (gold) =============== */
+@media (max-width: 1199px) {
+  .navmenu a i,
+  .navmenu a:focus i {
+    background-color: color-mix(in srgb, var(--brand-gold), transparent 88%);
+  }
+  .navmenu a i:hover,
+  .navmenu a:focus i:hover {
+    background-color: var(--brand-gold);
+    color: var(--contrast-color);
+  }
+}
+
+.btn, .btn-primary, .btn-outline-secondary { font-weight: 700 !important; }
