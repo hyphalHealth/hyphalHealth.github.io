@@ -2,7 +2,7 @@
   File: main.css
   Project: Hyphal Health | Coming Soon
   Created: 10.04.2025
-  Updated: 10.06.2025
+  Updated: 12.10.2025
   Author: Faro Digital Studio
 --------------------------------------------------------------*/
 /* Fonts */
@@ -1267,3 +1267,28 @@ input[type="submit"]:focus {
 }
 
 .btn, .btn-primary, .btn-outline-secondary { font-weight: 700 !important; }
+
+/* Hyphal Health — Ghost Button (matches social icons) */
+.btn-ghost-accent {
+  background-color: transparent;
+  border: 2px solid color-mix(in srgb, #ffffff, transparent 50%);
+  color: color-mix(in srgb, #ffffff, transparent 10%);
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 10px 20px;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.15s ease;
+}
+
+.btn-ghost-accent:hover,
+.btn-ghost-accent:focus {
+  border-color: var(--brand-gold);
+  color: var(--brand-gold);
+  transform: translateY(-1px);
+}
+
+.btn-ghost-accent:active {
+  transform: translateY(0);
+}
