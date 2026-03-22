@@ -6,16 +6,15 @@ section,
   color: var(--default-color);
   background-color: var(--background-color);
   padding: 60px 0;
-  scroll-margin-top: 90px;
+  scroll-margin-top: 80px;
   overflow: clip;
-  position: relative;
 }
 
 @media (max-width: 1199px) {
 
   section,
   .section {
-    scroll-margin-top: 66px;
+    scroll-margin-top: 60px;
   }
 }
 
@@ -29,7 +28,7 @@ section,
 
   h2 {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 20px;
     padding-bottom: 20px;
     position: relative;
@@ -54,5 +53,21 @@ section,
 }
 
 @import './sections/_hero.scss';
+@import './sections/_clients.scss';
 @import './sections/_about.scss';
+@import './sections/_services.scss';
+@import './sections/_features.scss';
+@import './sections/_portfolio.scss';
+@import './sections/_how-we-work.scss';
+@import './sections/_tabs.scss';
+@import './sections/_testimonials.scss';
+@import './sections/_pricing.scss';
+@import './sections/_faq.scss';
+@import './sections/_team.scss';
 @import './sections/_contact.scss';
+@import './sections/_portfolio-details.scss';
+@import './sections/_service-details.scss';
+@import './sections/_terms-of-service.scss';
+@import './sections/_privacy.scss';
+@import './sections/_error-404.scss';
+@import './sections/_starter-section.scss';

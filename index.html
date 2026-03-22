@@ -1,45 +1,68 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <!--
   File: index.html
-  Project: Hyphal Health Co. | Coming Soon
-  Created: 10.04.2025
-  Updated: 03.16.2026
+  Project: Hyphal Health Co. | Functional Mushroom Wellness, Supplements & Snacks
+  Created: 03.17.2026
+  Updated: 03.21.2026
   Author: Faro Digital Studio
 -->
-<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>Hyphal Health Co. | Functional Mushroom Wellness</title>
-  <meta name="description" content="Hyphal Health Co. crafts functional mushroom teas, tinctures, and wellness foods that simplify your path to focus, recovery, and balance — grown with purpose in Texas.">
-  <meta name="keywords" content="Hyphal Health, functional mushrooms, mushroom jerky, mushroom chips, tinctures, teas, adaptogens, lion's mane, reishi, cordyceps, chaga, wellness, sustainable, Texas, natural supplements">
-
-  <meta name="robots" content="index,follow">
+  <title>Hyphal Health Co. | Functional Mushroom Wellness, Supplements & Snacks</title>
+  <meta name="description" content="Hyphal Health Co. is an RGV mushroom wellness brand crafting functional mushroom blends, beverages, foods, pet products, and seasonal fungi designed to support everyday wellbeing.">
+  <meta name="keywords" content="Hyphal Health, functional mushrooms, mushroom wellness, lion's mane tincture, reishi tincture, cordyceps, chaga, mushroom tea, mushroom coffee, mushroom snacks, mushroom seasoning, mushroom pet treats, fresh mushrooms, dried mushrooms, Rio Grande Valley, RGV, Texas">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://hyphalhealth.com/">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Hyphal Health Co. — Functional Mushroom Wellness">
-  <meta property="og:description" content="Functional mushroom teas, tinctures, and protein-rich snacks that keep wellness simple.">
+  <meta property="og:title" content="Hyphal Health Co. | Functional Mushroom Wellness">
+  <meta property="og:description" content="Functional mushroom products built to bring the beneficial compounds and nutrient profiles of fungi into everyday diets through wellness blends, beverages, foods, pet products, and seasonal offerings.">
   <meta property="og:url" content="https://hyphalhealth.com/">
-  <meta property="og:image" content="assets/img/og-ledgerandflow.jpg">
+  <meta property="og:image" content="assets/img/og-hyphal-health.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hyphal Health Co. — Functional Mushroom Wellness">
-  <meta name="twitter:description" content="Wellness, simplified. Functional mushrooms, teas, tinctures, and sustainable snacks for balance and vitality.">
-  <meta name="twitter:image" content="assets/img/og-ledgerandflow.jpg">
+  <meta name="twitter:title" content="Hyphal Health Co. | Functional Mushroom Wellness">
+  <meta name="twitter:description" content="Functional mushroom products for everyday wellbeing, from wellness blends and beverages to foods and seasonal fungi.">
+  <meta name="twitter:image" content="assets/img/og-hyphal-health.jpg">
 
+  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Questrial:wght@400&display=swap" rel="stylesheet">
 
+  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .accent-text { color: var(--accent-color); }
+    .hero .hero-image img { max-width: 118%; width: 118%; margin-left: -7%; }
+    .research-link {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
+      color: var(--accent-color); font-weight: 500; text-decoration: none; transition: all 0.3s ease;
+    }
+    .research-link:hover {
+      color: color-mix(in srgb, var(--accent-color), transparent 15%);
+      transform: translateY(-1px);
+    }
+    .research-link i { font-size: 1rem; }
+    @media (max-width: 991px) {
+      .hero .hero-image img { max-width: 100%; width: 100%; margin-left: 0; }
+    }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -47,45 +70,50 @@
     "@type": "HealthAndBeautyBusiness",
     "name": "Hyphal Health Co.",
     "url": "https://hyphalhealth.com/",
-    "logo": "https://hyphalhealth.com/assets/img/og-ledgerandflow.jpg",
-    "description": "Functional mushroom teas, tinctures, and sustainable foods that simplify wellness.",
+    "description": "Functional mushroom wellness products including blends, beverages, foods, pet treats, and seasonal mushrooms.",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Harlingen",
       "addressRegion": "TX",
       "addressCountry": "US"
     },
     "sameAs": [
+      "https://hyphalhealth.square.site/",
       "https://linktr.ee/hyphalhealth",
-      "https://www.instagram.com/hyphalhealth",
       "https://www.facebook.com/hyphalhealth/",
-      "https://x.com/HyphalHealth"
+      "https://www.instagram.com/hyphalhealth",
+      "https://x.com/HyphalHealth",
+      "https://hyphalfarms.com/",
+      "https://thehyphalknot.com/",
+      "https://hyphyve.com/",
+      "https://hyphal.homes/",
+      "https://hyphalspace.com/"
     ]
   }
   </script>
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-621JZNRK00"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-621JZNRK00');
   </script>
 </head>
 
 <body class="index-page">
-
-  <header id="header" class="header d-flex align-items-center px-3 fixed-top">
-    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h1 class="sitename">Hyphal Health Co.</h1>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="#hero" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="Hyphal Health Co.">
+        <h1 class="sitename mb-0">Hyphal Health Co.</h1>
       </a>
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">Rooted in Wellness</a></li>
+          <li><a href="#about" class="active">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#why-mushrooms">Benefits</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://hyphalhealth.square.site/" target="_blank" rel="noopener" class="shop-nav-link">Shop</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -93,139 +121,259 @@
   </header>
 
   <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section transparent-background">
-      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <h2>Our <span class="text-accent fw-bold">Online Shop</span> is Fruiting Soon</h2>
-            <h3 class="mt-3 mb-2 fw-semibold">Wellness, simplified.</h3>
+    <section id="hero" class="hero section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-content">
+              <h1>Functional mushroom wellness for <span>everyday life.</span></h1>
+              <p>We aim to bring the <span class="accent-text">beneficial compounds</span> and <span class="accent-text">nutrient profiles</span> of functional mushrooms into everyday diets through thoughtfully made products built around <span class="accent-text">daily wellbeing</span>, better routines, and a healthier way to snack.</p>
+              <div class="hero-actions justify-content-center justify-content-lg-start">
+                <a href="https://hyphalhealth.square.site/" target="_blank" rel="noopener" class="btn-primary">Shop</a>
+                <a href="#products" class="btn-video d-flex align-items-center">
+                  <i class="bi bi-bag"></i>
+                  <span>See Products</span>
+                </a>
+              </div>
+            </div>
           </div>
-          <br>
-          <!-- Countdown -->
-          <div class="countdown d-flex justify-content-center mt-4" data-count="2026-03-22 11:59:59">
-            <div><h3 class="count-days">--</h3><h4>Days</h4></div>
-            <div><h3 class="count-hours">--</h3><h4>Hours</h4></div>
-            <div><h3 class="count-minutes">--</h3><h4>Minutes</h4></div>
-            <div><h3 class="count-seconds">--</h3><h4>Seconds</h4></div>
+          <div class="col-lg-6">
+            <div class="hero-image">
+              <img src="assets/img/hero.png" class="img-fluid floating" alt="Functional mushroom wellness products">
+            </div>
           </div>
-
-          <!-- CTA -->
-          <div class="col-lg-5 hero-newsletter mt-4">
-          <p class="mb-4">We create functional  <span class="text-accent fw-bold">snacks</span>,  <span class="text-accent fw-bold">supplements</span>, & <span class="text-accent fw-bold">beverages</span> that make mindful living easy.
-          <br> <br> 
-          Healthy for you <span class="text-accent fw-bold">and</span> the planet.</p>
-          <a class="btn btn-ghost-accent w-100 fw-bold" target="_blank" rel="noopener" href="https://linktr.ee/hyphalhealth">
-            Join the Network!
-          </a>
-          </div>
-
-          <!-- Socials -->
-          <div class="social-links mt-4">
-            <a href="https://www.facebook.com/hyphalhealth/" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/hyphalhealth" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="https://x.com/HyphalHealth" target="_blank" aria-label="X"><i class="bi bi-twitter-x"></i></a>
-          </div>
-
         </div>
       </div>
     </section>
-    <!-- /Hero Section -->
 
-    <!-- About Section -->
-    <section id="about" class="about section transparent-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Rooted in Wellness</h2>
-        <p class="lead-subtitle">Consciously crafted mushroom products that support focus, recovery, and everyday vitality.</p>
-      </div>
-
+    <section id="about" class="about section">
       <div class="container">
-        <div class="row gy-5">
-          <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
-            <h3><span class="text-accent">Naturally</span> rooted in wellness</h3>
-            <p>From cultivation to formulation, Hyphal Health Co. blends science, sustainability, and intention to grow nourishment for mind, body, and earth.</p>
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="about-image">
+              <img src="assets/img/about.png" alt="About Hyphal Health Co." class="img-fluid">
+            </div>
           </div>
-
-          <div class="col-xl-7" data-aos="fade-up" data-aos-delay="200">
-            <div class="row gy-4">
-              <div class="col-md-6 icon-box position-relative">
-                <i class="bi bi-flower3"></i>
-                <h4>Functional & Gourmet Mushrooms</h4>
-                <p>Lion’s Mane, Reishi, Cordyceps, and other adaptogens for clarity, immunity, and longevity. Protein-rich and tasteful groumets on a rotating schedule.</p>
-              </div>
-
-              <div class="col-md-6 icon-box position-relative">
-                <i class="bi bi-cup-hot"></i>
-                <h4>Wellness Teas</h4>
-                <p>Mushroom-infused herbal blends that restore balance through every sip. Combined with organic herbs and spices for an extra boost and added flavor.</p>
-              </div>
-
-              <div class="col-md-6 icon-box position-relative">
-                <i class="bi bi-droplet-half"></i>
-                <h4>Tinctures &amp; Tonics</h4>
-                <p>Double-extracted tinctures and targeted tonic formulas that fit seamlessly into your daily flow.</p>
-              </div>
-
-              <div class="col-md-6 icon-box position-relative">
-                <i class="bi bi-egg-fried"></i>
-                <h4>Healthy Mushroom Snacks</h4>
-                <p>Protein-rich jerky, low-fat chips, neurotrophic seasonings and other sustainable meat alternatives.</p>
+          <div class="col-lg-6">
+            <div class="content">
+              <h2>Built in the <span class="accent-text">Rio Grande Valley.</span></h2>
+              <p class="lead">Building mushroom products that feel <span class="accent-text">useful</span>, grounded, and easy to work into real routines.</p>
+              <p>Hyphal Health Co. started with a simple belief: functional mushroom products should be made with care, without cutting corners, and should feel as good in practice as they do on a label. What began as making our own blends has grown into a wider brand with a <span class="accent-text">farm-to-fork</span> mindset and a strong respect for cultivation, quality, and everyday usefulness.</p>
+              <p>We are drawn to mushrooms because they are <span class="accent-text">nutrient-rich</span>, full of beneficial compounds, naturally <span class="accent-text">cruelty-free</span>, and capable of being grown with a lighter footprint than many conventional systems. That means a brand built around <span class="accent-text">honest formulations</span>, approachable education, healthy alternatives, and a more human approach to wellness.</p>
+              <div class="cta-wrapper">
+                <a href="#why-mushrooms" class="btn-cta">
+                  <span>More on Mushrooms</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- /About Section -->
 
+    <section id="products" class="services section">
+      <div class="container section-title">
+        <h2>Products</h2>
+        <p>A simple way to browse the current <span class="accent-text">Hyphal Health</span> lineup before heading to the store.</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card h-100">
+              <div class="service-icon"><i class="bi bi-droplet-half"></i></div>
+              <h3>Daily Support</h3>
+              <p>Intentional formats designed for more targeted wellness routines, easy daily use, and <span class="accent-text">thoughtfully balanced</span> support.</p>
+              <a href="daily-support.html" class="service-link">View Category <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card h-100">
+              <div class="service-icon"><i class="bi bi-cup-hot"></i></div>
+              <h3>Sips &amp; Mixes</h3>
+              <p>Comforting and functional drink options built for <span class="accent-text">rituals</span>, resets, and flavorful daily use beyond traditional tea.</p>
+              <a href="sips-and-mixes.html" class="service-link">View Category <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card h-100">
+              <div class="service-icon"><i class="bi bi-basket2"></i></div>
+              <h3>Foods</h3>
+              <p>Mushroom-forward foods for a <span class="accent-text">healthier lifestyle</span>, from savory staples and pantry goods to seasonal farm offerings.</p>
+              <a href="foods.html" class="service-link">View Category <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="service-card h-100">
+              <div class="service-icon"><i class="bi bi-heart"></i></div>
+              <h3>Pets</h3>
+              <p>Companion-focused products made with the same thoughtful approach, built to support <span class="accent-text">everyday routines</span> for the animals we love.</p>
+              <a href="pets.html" class="service-link">View Category <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-mushrooms" class="features section">
+      <div class="container section-title">
+        <h2>Mushroom <span class="accent-text">Benefits</span></h2>
+        <p>Mushrooms are compelling because they bring together <span class="accent-text">functional compounds</span>, meaningful nutrition, practical sustainability, and long-term farming potential.</p>
+      </div>
+      <div class="container">
+        <div class="features-grid">
+          <div class="features-card">
+            <div class="icon-wrapper"><i class="bi bi-stars"></i></div>
+            <h3>Active Compounds</h3>
+            <p>Mushrooms contain naturally occurring compounds that make them compelling ingredients for thoughtful <span class="accent-text">daily wellness</span> products.</p>
+            <div class="features-list">
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Full spectrum of bioactive compounds across a host of functional mushrooms</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Tailored blends and targeted benefits to maximize effectiveness</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Processed to maintain potency and bioavailability, while catering to various lifestyles and preferences</span></div>
+            </div>
+          </div>
+          <div class="features-card">
+            <div class="icon-wrapper"><i class="bi bi-nut"></i></div>
+            <h3>Rich Nutrition</h3>
+            <p>Mushrooms offer meaningful nutrition too, including <span class="accent-text">vitamins</span>, minerals, fiber, and notable protein potential across many species.</p>
+            <div class="features-list">
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Cruelty-free protein alternative with meaty texture</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Micronutrient profile includes Vitamins B and D</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Great source of dietary fiber and antioxidants</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Healthy snacking alternative that takes to flavor and has low calories</span></div>
+            </div>
+          </div>
+          <div class="features-card">
+            <div class="icon-wrapper"><i class="bi bi-recycle"></i></div>
+            <h3>Light Footprint</h3>
+            <p>Mushrooms can be grown on agricultural byproducts and underused biomass, linking nutrition with <span class="accent-text">smarter resource use</span>.</p>
+            <div class="features-list">
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Can make use of biowaste (such as sugarcane bagasse)</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Efficient production potential</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Potential for circular economy integration</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Ability to output several materials and compounds from similar inputs</span></div>
+            </div>
+          </div>
+          <div class="features-card">
+            <div class="icon-wrapper"><i class="bi bi-lightning"></i></div>
+            <h3>Brain Support</h3>
+            <p>Species like <span class="accent-text">Lion’s Mane</span> continue to draw interest for cognitive support, mental clarity, and broader nervous system health.</p>
+            <div class="features-list">
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Shown to enhance focus and clarity</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Linked to Nerve Growth Factor (NGF)</span></div>
+              <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Supports the brain against age-related decline</span></div>
+            </div>
+                <a href="https://docs.google.com/spreadsheets/d/13kzohwslg5zUxrJGcYQ9G56dbK09apXO86MdJpyUCwM/" target="_blank" rel="noopener" class="research-link">
+                <span>See more on <span class="accent-text">Lion’s Mane</span></span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq section">
+      <div class="container section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>A few of the practical things people usually want to know first.</p>
+      </div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <div class="faq-wrapper">
+              <div class="faq-item">
+                <div class="faq-header">
+                  <span class="faq-number">01</span>
+                  <h4>Where can we find you in person?</h4>
+                  <div class="faq-toggle"><i class="bi bi-plus"></i><i class="bi bi-dash"></i></div>
+                </div>
+                <div class="faq-content"><div class="content-inner"><p>We are popping up at more and more markets across the <span class="accent-text">RGV</span>. Jackson Street Market Days in Harlingen was our first market, so it will always have a special place in our hearts.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-header">
+                  <span class="faq-number">02</span>
+                  <h4>Can you ship or deliver locally?</h4>
+                  <div class="faq-toggle"><i class="bi bi-plus"></i><i class="bi bi-dash"></i></div>
+                </div>
+                <div class="faq-content"><div class="content-inner"><p>Yes. We can ship for a fee through Square with automated shipping costs, or deliver locally on Fridays for a flat $5 fee. Orders over $100 ship free.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-header">
+                  <span class="faq-number">03</span>
+                  <h4>Do you grow your own mushrooms?</h4>
+                  <div class="faq-toggle"><i class="bi bi-plus"></i><i class="bi bi-dash"></i></div>
+                </div>
+                <div class="faq-content"><div class="content-inner"><p>Yes. We grow multiple mushroom strains and supplement with wild harvest and USA organic sources when needed. Our farming capacity keeps growing, and you can learn more at <a href="https://hyphalfarms.com/" target="_blank" rel="noopener">Hyphal Farms</a>.</p></div></div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-header">
+                  <span class="faq-number">04</span>
+                  <h4>Can we work together?</h4>
+                  <div class="faq-toggle"><i class="bi bi-plus"></i><i class="bi bi-dash"></i></div>
+                </div>
+                <div class="faq-content"><div class="content-inner"><p>Absolutely. We are open to <span class="accent-text">markets</span>, collaborations, wholesale conversations, media, and community partnerships across the Valley and beyond.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer id="footer" class="footer transparent-background">
+  <footer id="footer" class="footer position-relative light-background">
     <div class="container">
-      <div class="row gy-3">
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-geo-alt icon"></i>
-          <div class="address">
-            <h4>Location</h4>
-            <p>Harlingen, TX</p>
+      <div class="row gy-4 align-items-start">
+        <div class="col-lg-5">
+          <div class="footer-content">
+            <a href="#hero" class="logo d-flex align-items-center mb-3"><span class="sitename">Hyphal Health Co.</span></a>
+            <p class="mb-3">RGV-based functional mushroom wellness. Thoughtfully made products for <span class="accent-text">everyday wellbeing</span>, healthier alternatives, and a growing fungal future.</p>
+            <div class="social-links">
+              <a href="https://www.instagram.com/hyphalhealth" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.facebook.com/hyphalhealth/" target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a>
+              <a href="https://x.com/HyphalHealth" target="_blank" rel="noopener"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://linktr.ee/hyphalhealth" target="_blank" rel="noopener"><i class="bi bi-link-45deg"></i></a>
+            </div>
           </div>
         </div>
-
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-link-45deg icon"></i>
-          <div>
-            <h4>Get in Touch</h4>
-            <p><strong>Email:</strong> <a href="mailto:hello@hyphalhealth.com">hello@hyphalhealth.com</a><br>
-              <strong>Links:</strong> <a href="https://linktr.ee/hyphalhealth" target="_blank" rel="noopener">linktr.ee/hyphalhealth</a>
-            </p>
+        <div class="col-lg-3 col-6">
+          <div class="footer-links">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="#about"><i class="bi bi-chevron-right"></i> About</a></li>
+              <li><a href="#products"><i class="bi bi-chevron-right"></i> Products</a></li>
+              <li><a href="#why-mushrooms"><i class="bi bi-chevron-right"></i>Benefits</a></li>
+              <li><a href="#faq"><i class="bi bi-chevron-right"></i> FAQ</a></li>
+              <li><a href="https://hyphalhealth.square.site/" target="_blank" rel="noopener"><i class="bi bi-chevron-right"></i> Shop</a></li>
+            </ul>
           </div>
         </div>
-
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-clock icon"></i>
-          <div>
-            <h4>Status</h4>
-            <p><strong>Site:</strong> Coming Soon<br>
-              <strong>Launch Target:</strong> March 23, 2026
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <h4>Follow Us</h4>
-          <div class="social-links d-flex">
-            <a href="https://www.facebook.com/hyphalhealth/" target="_blank"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/hyphalhealth" target="_blank"><i class="bi bi-instagram"></i></a>
-            <a href="https://x.com/HyphalHealth" target="_blank"><i class="bi bi-twitter-x"></i></a>
+        <div class="col-lg-4 col-6">
+          <div class="footer-links">
+            <h4>Explore the Ecosystem</h4>
+            <ul>
+              <li><a href="https://hyphalfarms.com/" target="_blank" rel="noopener"><i class="bi bi-chevron-right"></i> Hyphal Farms</a></li>
+              <li><a href="https://thehyphalknot.com/" target="_blank" rel="noopener"><i class="bi bi-chevron-right"></i> The Hyphal Knot</a></li>
+              <li><a href="https://hyphyve.com/" target="_blank" rel="noopener"><i class="bi bi-chevron-right"></i> HyPhyve</a></li>
+              <li><a href="https://hyphal.homes/" target="_blank" rel="noopener"><i class="bi bi-chevron-right"></i> Hyphal Homes</a></li>
+              <li><a href="https://hyphalspace.com/" target="_blank" rel="noopener"><i class="bi bi-chevron-right"></i> Hyphal Space</a></li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container copyright text-center mt-4">
-      <p>© <span>2026</span> <strong class="px-1 sitename">Hyphal Health Co.</strong> All Rights Reserved<br>
-      Powered by <a href="https://farodigitalstudio.com" target="_blank" rel="noopener">Faro Digital Studio</a></p>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center gy-2">
+          <div class="col-lg-8">
+            <div class="copyright">
+              <p>© <span>2026</span> <strong class="px-1 sitename">Hyphal Health Co.</strong> <span>All Rights Reserved</span><br><span>Powered by <a href="https://farodigitalstudio.com/" target="_blank" rel="noopener">Faro Digital Studio</a></span></p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <div class="footer-bottom-links"><a href="#hero">Back to Top</a></div>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -233,7 +381,11 @@
   <div id="preloader"></div>
 
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

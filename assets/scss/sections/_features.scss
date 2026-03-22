@@ -1,0 +1,109 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Features Section
+--------------------------------------------------------------*/
+.features {
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .features-card {
+    position: relative;
+    background-color: var(--surface-color);
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+      .icon-wrapper {
+        background-color: var(--accent-color);
+        color: var(--contrast-color);
+      }
+    }
+
+    .icon-wrapper {
+      width: 70px;
+      height: 70px;
+      background-color: color-mix(in srgb, var(--accent-color), transparent 85%);
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+
+      i {
+        font-size: 32px;
+      }
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--heading-color);
+    }
+
+    p {
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: color-mix(in srgb, var(--default-color), transparent 20%);
+    }
+
+    .features-list {
+      margin-bottom: 25px;
+
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        i {
+          color: var(--accent-color);
+          font-size: 16px;
+          margin-right: 10px;
+          margin-top: 3px;
+        }
+
+        span {
+          font-size: 14px;
+          color: color-mix(in srgb, var(--default-color), transparent 10%);
+        }
+      }
+    }
+
+    .image-container {
+      margin-top: auto;
+      text-align: center;
+
+      img {
+        max-height: 180px;
+        object-fit: contain;
+        transition: transform 0.4s ease;
+      }
+    }
+
+    &:hover .image-container img {
+      transform: scale(1.05);
+    }
+  }
+}

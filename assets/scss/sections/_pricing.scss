@@ -1,0 +1,199 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# Pricing Section
+--------------------------------------------------------------*/
+.pricing {
+  .pricing-card {
+    background-color: var(--surface-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px color-mix(in srgb, var(--default-color), transparent 85%);
+    }
+
+    &.featured {
+      border-color: var(--accent-color);
+      transform: scale(1.02);
+
+      &:hover {
+        transform: scale(1.02) translateY(-5px);
+      }
+
+      .featured-badge {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--accent-color);
+        color: var(--contrast-color);
+        padding: 0.5rem 1.25rem;
+        border-radius: 0 0 8px 8px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+    }
+
+    .plan-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+
+      .plan-name {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--heading-color);
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+      }
+
+      .plan-description {
+        font-size: 0.95rem;
+        color: color-mix(in srgb, var(--default-color), transparent 30%);
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+    }
+
+    .pricing-display {
+      text-align: center;
+      margin-bottom: 2.5rem;
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.25rem;
+
+        .currency {
+          font-size: 1.25rem;
+          color: color-mix(in srgb, var(--default-color), transparent 40%);
+          font-weight: 500;
+        }
+
+        .amount {
+          font-size: 3.5rem;
+          font-weight: 300;
+          color: var(--heading-color);
+          letter-spacing: -0.02em;
+        }
+
+        .period {
+          font-size: 1rem;
+          color: color-mix(in srgb, var(--default-color), transparent 40%);
+          font-weight: 400;
+        }
+      }
+    }
+
+    .features-list {
+      margin-bottom: 2.5rem;
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+
+        i {
+          color: var(--accent-color);
+          font-size: 1rem;
+          flex-shrink: 0;
+        }
+
+        span {
+          font-size: 0.95rem;
+          color: var(--default-color);
+          line-height: 1.5;
+        }
+      }
+    }
+
+    .btn-plan {
+      display: block;
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background-color: transparent;
+      border: 1.5px solid var(--accent-color);
+      color: var(--accent-color);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      letter-spacing: 0.01em;
+
+      &:hover {
+        background-color: var(--accent-color);
+        color: var(--contrast-color);
+        transform: translateY(-1px);
+      }
+    }
+
+    &.featured .btn-plan {
+      background-color: var(--accent-color);
+      color: var(--contrast-color);
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--accent-color), black 10%);
+        border-color: color-mix(in srgb, var(--accent-color), black 10%);
+      }
+    }
+  }
+
+  .pricing-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+
+    .guarantee-text {
+      font-size: 0.9rem;
+      color: color-mix(in srgb, var(--default-color), transparent 40%);
+      margin-bottom: 1rem;
+    }
+
+    .contact-text {
+      font-size: 0.95rem;
+      color: var(--default-color);
+      margin-bottom: 0;
+
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 992px) {
+    .pricing-card.featured {
+      transform: none;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 0;
+
+    .pricing-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .pricing-display .price .amount {
+      font-size: 2.75rem;
+    }
+  }
+}

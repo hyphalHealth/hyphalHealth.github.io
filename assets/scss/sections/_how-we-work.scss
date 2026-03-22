@@ -1,0 +1,121 @@
+// main: ../main.scss
+/*--------------------------------------------------------------
+# How We Work Section
+--------------------------------------------------------------*/
+.how-we-work {
+  padding-top: 60px;
+  padding-bottom: 40px;
+
+  .step-item {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    margin-bottom: 30px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 45px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg,
+          color-mix(in srgb, var(--accent-color), transparent 70%) 0%,
+          color-mix(in srgb, var(--accent-color), transparent 90%) 100%);
+      z-index: 0;
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+  }
+
+  .step-circle {
+    width: 70px;
+    height: 70px;
+    background-color: var(--surface-color);
+    border: 2px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+
+    span {
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .step-item:hover {
+    .step-circle {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      transform: scale(1.1);
+
+      span {
+        color: var(--contrast-color);
+      }
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--heading-color);
+  }
+
+  p {
+    color: color-mix(in srgb, var(--default-color), transparent 20%);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 991px) {
+    .step-item {
+      &::after {
+        display: none;
+      }
+    }
+
+    .step-circle {
+      width: 60px;
+      height: 60px;
+
+      span {
+        font-size: 1.3rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .step-circle {
+      width: 50px;
+      height: 50px;
+
+      span {
+        font-size: 1.1rem;
+      }
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}

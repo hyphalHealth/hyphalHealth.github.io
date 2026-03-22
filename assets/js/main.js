@@ -1,159 +1,237 @@
 /**
- * Hyphal Health Co. | Main JS
- * - Header invert on scroll (.header-scrolled)
- * - Mobile nav toggle + close on link click
- * - Scroll-top button
- * - Preloader removal with hard failsafe
- * - AOS safe init (if present)
- * - Countdown (local-time parser; supports slash or dash dates)
- * - Defensive click-through fixes for overlays
- */
+* Template Name: Devin
+* Template URL: https://bootstrapmade.com/devin-bootstrap-template/
+* Updated: Jul 23 2025 with Bootstrap v5.3.7
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
 
-(() => {
-  'use strict';
+(function() {
+  "use strict";
 
-  // ------- Shortcuts
-  const $ = (sel, ctx) => (ctx || document).querySelector(sel);
-  const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
-  const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts || false);
+  /**
+   * Apply .scrolled class to the body as the page is scrolled down
+   */
+  function toggleScrolled() {
+    const selectBody = document.querySelector('body');
+    const selectHeader = document.querySelector('#header');
+    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+  }
 
-  // ------- Elements
-  const body = document.body;
-  const header = $('#header');
-  const preloader = $('#preloader');
-  const scrollTopBtn = $('.scroll-top');
-  const mobileToggle = $('.mobile-nav-toggle');
+  document.addEventListener('scroll', toggleScrolled);
+  window.addEventListener('load', toggleScrolled);
 
-  // ------- Header invert + scroll-top visibility
-  const setScrollState = () => {
-    const y = window.scrollY || 0;
-    if (header) header.classList.toggle('header-scrolled', y > 10);
-    body.classList.toggle('scrolled', y > 100);
-    if (scrollTopBtn) scrollTopBtn.classList.toggle('active', y > 100);
-  };
-  on(window, 'scroll', setScrollState, { passive: true });
-  on(window, 'load', setScrollState);
-  on(document, 'DOMContentLoaded', setScrollState);
+  /**
+   * Mobile nav toggle
+   */
+  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
-  // ------- Mobile nav toggle
-  if (mobileToggle) {
-    on(mobileToggle, 'click', () => {
-      const active = body.classList.toggle('mobile-nav-active');
-      mobileToggle.classList.toggle('bi-x', active);
-      mobileToggle.classList.toggle('bi-list', !active);
-      mobileToggle.setAttribute('aria-expanded', String(active));
+  function mobileNavToogle() {
+    document.querySelector('body').classList.toggle('mobile-nav-active');
+    mobileNavToggleBtn.classList.toggle('bi-list');
+    mobileNavToggleBtn.classList.toggle('bi-x');
+  }
+  if (mobileNavToggleBtn) {
+    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  }
+
+  /**
+   * Hide mobile nav on same-page/hash links
+   */
+  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+    navmenu.addEventListener('click', () => {
+      if (document.querySelector('.mobile-nav-active')) {
+        mobileNavToogle();
+      }
+    });
+
+  });
+
+  /**
+   * Toggle mobile nav dropdowns
+   */
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+    navmenu.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle('active');
+      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      e.stopImmediatePropagation();
+    });
+  });
+
+  /**
+   * Preloader
+   */
+  const preloader = document.querySelector('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove();
     });
   }
-  // Close mobile nav on in-page link click
-  $$('#navmenu a').forEach(a => {
-    on(a, 'click', () => {
-      if (body.classList.contains('mobile-nav-active')) {
-        body.classList.remove('mobile-nav-active');
-        if (mobileToggle) {
-          mobileToggle.classList.remove('bi-x');
-          mobileToggle.classList.add('bi-list');
-          mobileToggle.setAttribute('aria-expanded', 'false');
+
+  /**
+   * Scroll top button
+   */
+  let scrollTop = document.querySelector('.scroll-top');
+
+  function toggleScrollTop() {
+    if (scrollTop) {
+      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+    }
+  }
+  scrollTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  window.addEventListener('load', toggleScrollTop);
+  document.addEventListener('scroll', toggleScrollTop);
+
+  /**
+   * Initiate glightbox
+   */
+  const glightbox = GLightbox({
+    selector: '.glightbox'
+  });
+
+  /**
+   * Init swiper sliders
+   */
+  function initSwiper() {
+    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+      let config = JSON.parse(
+        swiperElement.querySelector(".swiper-config").innerHTML.trim()
+      );
+
+      if (swiperElement.classList.contains("swiper-tab")) {
+        initSwiperWithCustomPagination(swiperElement, config);
+      } else {
+        new Swiper(swiperElement, config);
+      }
+    });
+  }
+
+  window.addEventListener("load", initSwiper);
+
+  /**
+   * Initiate Pure Counter
+   */
+  new PureCounter();
+
+  /**
+   * Init isotope layout and filters
+   */
+  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
+    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
+    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
+
+    let initIsotope;
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
+        itemSelector: '.isotope-item',
+        layoutMode: layout,
+        filter: filter,
+        sortBy: sort
+      });
+    });
+
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
+      filters.addEventListener('click', function() {
+        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
+        this.classList.add('filter-active');
+        initIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        if (typeof aosInit === 'function') {
+          aosInit();
         }
+      }, false);
+    });
+
+  });
+
+  /*
+   * Pricing Toggle
+   */
+
+  const pricingContainers = document.querySelectorAll('.pricing-toggle-container');
+
+  pricingContainers.forEach(function(container) {
+    const pricingSwitch = container.querySelector('.pricing-toggle input[type="checkbox"]');
+    const monthlyText = container.querySelector('.monthly');
+    const yearlyText = container.querySelector('.yearly');
+
+    pricingSwitch.addEventListener('change', function() {
+      const pricingItems = container.querySelectorAll('.pricing-item');
+
+      if (this.checked) {
+        monthlyText.classList.remove('active');
+        yearlyText.classList.add('active');
+        pricingItems.forEach(item => {
+          item.classList.add('yearly-active');
+        });
+      } else {
+        monthlyText.classList.add('active');
+        yearlyText.classList.remove('active');
+        pricingItems.forEach(item => {
+          item.classList.remove('yearly-active');
+        });
       }
     });
   });
 
-  // ------- Scroll-top
-  if (scrollTopBtn) {
-    on(scrollTopBtn, 'click', e => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  /**
+   * Frequently Asked Questions Toggle
+   */
+  document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle, .faq-item .faq-header').forEach((faqItem) => {
+    faqItem.addEventListener('click', () => {
+      faqItem.parentNode.classList.toggle('faq-active');
     });
-  }
+  });
 
-  // ------- Preloader remove + failsafe
-  const killPreloader = () => {
-    const p = $('#preloader');
-    if (p && p.parentNode) p.parentNode.removeChild(p);
-  };
-  on(window, 'load', killPreloader);
-  on(document, 'DOMContentLoaded', () => setTimeout(killPreloader, 1500)); // safety
-
-  // ------- AOS (if loaded)
-  on(window, 'load', () => {
-    if (window.AOS && typeof window.AOS.init === 'function') {
-      window.AOS.init({ duration: 600, easing: 'ease-in-out', once: true, mirror: false });
+  /**
+   * Correct scrolling position upon page load for URLs containing hash links.
+   */
+  window.addEventListener('load', function(e) {
+    if (window.location.hash) {
+      if (document.querySelector(window.location.hash)) {
+        setTimeout(() => {
+          let section = document.querySelector(window.location.hash);
+          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+          window.scrollTo({
+            top: section.offsetTop - parseInt(scrollMarginTop),
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
     }
   });
 
-  // ------- Defensive: never let overlays block clicks
-  // Ensures hero/content sits above any pseudo/overlay and is clickable.
-  const hero = $('#hero');
-  if (hero) {
-    hero.style.position = hero.style.position || 'relative';
-    hero.style.zIndex = hero.style.zIndex || '1';
-    // Ensure anchors in hero accept pointer events
-    $$('#hero a').forEach(a => (a.style.pointerEvents = 'auto'));
+  /**
+   * Navmenu Scrollspy
+   */
+  let navmenulinks = document.querySelectorAll('.navmenu a');
+
+  function navmenuScrollspy() {
+    navmenulinks.forEach(navmenulink => {
+      if (!navmenulink.hash) return;
+      let section = document.querySelector(navmenulink.hash);
+      if (!section) return;
+      let position = window.scrollY + 200;
+      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+        navmenulink.classList.add('active');
+      } else {
+        navmenulink.classList.remove('active');
+      }
+    })
   }
-  // In case legacy CSS is cached, force overlays to ignore pointer events.
-  const style = document.createElement('style');
-  style.textContent = `
-    #preloader, body::before { pointer-events: none !important; }
-  `;
-  document.head.appendChild(style);
+  window.addEventListener('load', navmenuScrollspy);
+  document.addEventListener('scroll', navmenuScrollspy);
 
-  // ------- Countdown
-  // Accepts "YYYY/MM/DD HH:mm[:ss]" or "YYYY-MM-DD HH:mm[:ss]" or ISO.
-  const parseLocalDate = (raw) => {
-    if (!raw) return NaN;
-    const s = String(raw).trim();
-
-    // ISO or native-friendly
-    const n = Date.parse(s);
-    if (!Number.isNaN(n)) return n;
-
-    // Normalize slashes -> dashes and parse as local components
-    const m = s.replace(/\//g, '-')
-      .match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/);
-    if (!m) return NaN;
-
-    const [, yy, mo, dd, hh = '0', mm = '0', ss = '0'] = m;
-    const dt = new Date(Number(yy), Number(mo) - 1, Number(dd), Number(hh), Number(mm), Number(ss));
-    return dt.getTime();
-  };
-
-  const initCountdown = (root) => {
-    const targetMs = parseLocalDate(root.getAttribute('data-count') || '');
-    if (Number.isNaN(targetMs)) {
-      root.style.display = 'none';
-      return null;
-    }
-
-    const els = {
-      d: root.querySelector('.count-days'),
-      h: root.querySelector('.count-hours'),
-      m: root.querySelector('.count-minutes'),
-      s: root.querySelector('.count-seconds')
-    };
-    const pad = (n) => String(n).padStart(2, '0');
-
-    const tick = () => {
-      const now = Date.now();
-      let diff = Math.max(0, targetMs - now);
-
-      const days = Math.floor(diff / 86400000); diff -= days * 86400000;
-      const hrs  = Math.floor(diff / 3600000);  diff -= hrs  * 3600000;
-      const min  = Math.floor(diff / 60000);    diff -= min  * 60000;
-      const sec  = Math.floor(diff / 1000);
-
-      if (els.d) els.d.textContent = String(days);
-      if (els.h) els.h.textContent = pad(hrs);
-      if (els.m) els.m.textContent = pad(min);
-      if (els.s) els.s.textContent = pad(sec);
-    };
-
-    tick();
-    return window.setInterval(tick, 1000);
-  };
-
-  const timers = [];
-  $$('.countdown').forEach(node => {
-    const id = initCountdown(node);
-    if (id) timers.push(id);
-  });
 })();

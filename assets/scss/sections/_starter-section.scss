@@ -1,9 +1,7 @@
 // main: ../main.scss
 /*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
+# Starter Section Section
 --------------------------------------------------------------*/
-@media screen and (max-width: 768px) {
-  [data-aos-delay] {
-    transition-delay: 0 !important;
-  }
+.starter-section {
+  /* Add your styles here */
 }
